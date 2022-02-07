@@ -12,13 +12,14 @@ func Sorting(data []int) []int {
 			} else if data[i-1] > data[i] {
 				var first int = data[i-1]
 				var second int = data[i]
-				data[i-1] = second // technical variable for value reversing
-				data[i] = first    // technical variable for value reversing
+				data[i-1], data[i] = second, first // technical variables for value reversing
+
 			}
 		}
 	}
 	return data
 }
+
 func ReverseSort(data []int) []int {
 	//standard bubble sorting algorithm. Sort slice of integers from bigger to small
 	var length int = len(data) // variable equal slice size for looping through all items in the slice
@@ -31,11 +32,28 @@ func ReverseSort(data []int) []int {
 			} else if data[i] < data[i+1] {
 				var first int = data[i+1]
 				var second int = data[i]
-				data[i+1] = second // technical variable for value reversing
-				data[i] = first    // technical variable for value reversing
+				data[i+1], data[i] = second, first // technical variables for value reversing
+
 			}
 		}
 	}
 	return data
 
+}
+
+func BubbleRecurtion(data []int) []int {
+	// int slice sorting with recurtion
+	counter := 0
+	if len(data) == 1 || len(data) == 0 {
+		return data
+	} else {
+		for i := 0; i < len(data)-1; i++ {
+			if data[i] > data[i+1] {
+				data[i], data[i+1] = data[i+1], data[i]
+			}
+		}
+	}
+	counter += 1
+	BubbleRecurtion(data[counter:])
+	return data
 }
